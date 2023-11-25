@@ -30,7 +30,14 @@ class map:
         plt.imshow(self.map)
 
         # Plot path
-        plt.plot(range(self.width), path, color="red")
+        # plt.plot(range(self.width), path, color="red")
+        for i in range(1, len(path)):
+            if abs(path[i] - path[i - 1]) < 2:
+                plt.plot([i - 1, i], [path[i - 1], path[i]], color="white")
+            else:
+                plt.plot([i - 1, i], [path[i - 1], path[i]], color="red")
+
+        plt.title("Path length: " + str(int(self.calc_dist(path))))
 
         # Display map
         plt.show()
